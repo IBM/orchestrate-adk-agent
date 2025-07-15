@@ -1,8 +1,8 @@
 # Salesforce Agent for watsonx Orchestrate
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/your-org/salesforce-agent/ci.yml?branch=main)](https://github.com/your-org/salesforce-agent/actions)
-[![Version](https://img.shields.io/github/v/release/your-org/salesforce-agent)](https://github.com/your-org/salesforce-agent/releases)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/your-org/salesforce-agent/ci.yml?branch=main)](https://github.com/IBM/orchestrate-adk-agent/actions)
+[![Version](https://img.shields.io/github/v/release/IBM/orchestrate-adk-agent)](https://github.com/IBM/orchestrate-adk-agent/releases)
 
 A comprehensive Salesforce agent built for IBM watsonx Orchestrate ADK that provides powerful tools to interact with your Salesforce org using the simple-salesforce Python library.
 
@@ -17,17 +17,17 @@ A comprehensive Salesforce agent built for IBM watsonx Orchestrate ADK that prov
 ### Installation
 
 ```bash
-git clone https://github.com/your-org/salesforce-agent.git
-cd salesforce-agent
+git clone https://github.com/IBM/orchestrate-adk-agent
+cd orchestrate-adk-agent
 pip install -r requirements.txt
 cp .env.template .env
-# Fill in your Salesforce credentials in .env
+# Fill in your Salesforce and watsonx orchestrate credentials in .env
 ```
 
 > **Note:** Make scripts executable if needed:
 >
 > ```bash
-> chmod +x import_agent.sh setup_connection.sh check_connection.sh test_agent.sh
+> chmod +x import_agent.sh import_tools.sh setup_connection.sh check_connection.sh test_agent.sh
 > ```
 
 ## Repository Structure
@@ -44,6 +44,10 @@ cp .env.template .env
 - `import_agent.sh`: Imports the agent into Orchestrate.
   ```bash
   ./import_agent.sh
+  ```
+  - `import_tools.sh`: Imports the tools into Orchestrate.
+  ```bash
+  ./import_tools.sh
   ```
 - `setup_connection.sh`: Sets up Salesforce connection.
   ```bash
@@ -429,7 +433,7 @@ Please ensure your code is well-tested and documented. For major changes, open a
 
 ## Reporting Issues & Support
 
-- For bugs, feature requests, or questions, please use [GitHub Issues](https://github.com/your-org/salesforce-agent/issues).
+- For bugs, feature requests, or questions, please use [GitHub Issues](https://github.com/IBM/orchestrate-adk-agent/issues).
 - For general discussion, join GitHub Discussions or contact the maintainers listed in the repository.
 
 ## License
