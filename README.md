@@ -6,6 +6,8 @@
 
 A comprehensive Salesforce agent built for IBM watsonx Orchestrate ADK that provides powerful tools to interact with your Salesforce org using the simple-salesforce Python library.
 
+### NOTE: This is just a example implementation to help you get started with orchestrate adk and create agents/tools/connections. The salesforce tools added here are NOT meant for deployment purpose. Please take this only as example implementation
+
 ## Getting Started
 
 ### Prerequisites
