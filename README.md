@@ -1,10 +1,6 @@
-# Salesforce Agent for watsonx Orchestrate
+# IBM WatsonX Orchestrate ADK Salesforce Agent
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/IBM/orchestrate-adk-agent/ci.yml?branch=main)](https://github.com/IBM/orchestrate-adk-agent/actions)
-[![Version](https://img.shields.io/github/v/release/IBM/orchestrate-adk-agent)](https://github.com/IBM/orchestrate-adk-agent/releases)
-
-A comprehensive Salesforce agent built for IBM watsonx Orchestrate ADK that provides powerful tools to interact with your Salesforce org using the simple-salesforce Python library.
+An example Salesforce agent built with IBM watsonx Orchestrate ADK that provides powerful tools to interact with your Salesforce org using the simple-salesforce Python library.
 
 ### NOTE: This is just a example implementation to help you get started with orchestrate adk and create agents/tools/connections. The salesforce tools added here are NOT meant for deployment purpose. Please take this only as example implementation
 
