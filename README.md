@@ -1,8 +1,8 @@
 # Salesforce Agent for watsonx Orchestrate
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/your-org/salesforce-agent/ci.yml?branch=main)](https://github.com/your-org/salesforce-agent/actions)
-[![Version](https://img.shields.io/github/v/release/your-org/salesforce-agent)](https://github.com/your-org/salesforce-agent/releases)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/IBM/orchestrate-adk-agent/ci.yml?branch=main)](https://github.com/IBM/orchestrate-adk-agent/actions)
+[![Version](https://img.shields.io/github/v/release/IBM/orchestrate-adk-agent)](https://github.com/IBM/orchestrate-adk-agent/releases)
 
 A comprehensive Salesforce agent built for IBM watsonx Orchestrate ADK that provides powerful tools to interact with your Salesforce org using the simple-salesforce Python library.
 
@@ -19,8 +19,8 @@ A comprehensive Salesforce agent built for IBM watsonx Orchestrate ADK that prov
 ### Installation
 
 ```bash
-git clone https://github.com/your-org/salesforce-agent.git
-cd salesforce-agent
+git clone https://github.com/IBM/orchestrate-adk-agent.git
+cd orchestrate-adk-agent
 pip install -r requirements.txt
 cp .env.template .env
 # Fill in your Salesforce credentials in .env
@@ -39,13 +39,17 @@ cp .env.template .env
 - `connections/`: Connection configuration files
 - `requirements.txt`: Python dependencies
 - `.env.template`: Environment variable template
-- `import_agent.sh`, `setup_connection.sh`, `check_connection.sh`, `test_agent.sh`: Shell scripts for quick setup and testing
+- `import_agent.sh`, `import_tools.sh`, `setup_connection.sh`, `check_connection.sh`, `test_agent.sh`: Shell scripts for quick setup and testing
 
 ## Shell Scripts
 
 - `import_agent.sh`: Imports the agent into Orchestrate.
   ```bash
   ./import_agent.sh
+  ```
+- `import_tools.sh`: Imports the tools into Orchestrate.
+  ```bash
+  ./import_tools.sh
   ```
 - `setup_connection.sh`: Sets up Salesforce connection.
   ```bash
@@ -149,25 +153,31 @@ SF_DOMAIN=test
 
 ## Quick Start
 
-1. **Import the agent and tools**:
+1. **Import the agent**:
 
 ```bash
 ./import_agent.sh
 ```
 
-2. **Set up your Salesforce connection**:
+2. **Import the tools**:
+
+```bash
+./import_tools.sh
+```
+
+3. **Set up your Salesforce connection**:
 
 ```bash
 ./setup_connection.sh
 ```
 
-3. **Check connection status**:
+4. **Check connection status**:
 
 ```bash
 ./check_connection.sh
 ```
 
-4. **Test the agent**:
+5. **Test the agent**:
 
 ```bash
 ./test_agent.sh
@@ -431,7 +441,7 @@ Please ensure your code is well-tested and documented. For major changes, open a
 
 ## Reporting Issues & Support
 
-- For bugs, feature requests, or questions, please use [GitHub Issues](https://github.com/your-org/salesforce-agent/issues).
+- For bugs, feature requests, or questions, please use [GitHub Issues](https://github.com/IBM/orchestrate-adk-agent/issues).
 - For general discussion, join GitHub Discussions or contact the maintainers listed in the repository.
 
 ## License
