@@ -4,7 +4,7 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/your-org/salesforce-agent/ci.yml?branch=main)](https://github.com/your-org/salesforce-agent/actions)
 [![Version](https://img.shields.io/github/v/release/your-org/salesforce-agent)](https://github.com/your-org/salesforce-agent/releases)
 
-A comprehensive Salesforce agent built for IBM watsonx Orchestrate that provides powerful tools to interact with your Salesforce org using the simple-salesforce Python library.
+A comprehensive Salesforce agent built for IBM watsonx Orchestrate ADK that provides powerful tools to interact with your Salesforce org using the simple-salesforce Python library.
 
 ## Getting Started
 
@@ -25,6 +25,7 @@ cp .env.template .env
 ```
 
 > **Note:** Make scripts executable if needed:
+>
 > ```bash
 > chmod +x import_agent.sh setup_connection.sh check_connection.sh test_agent.sh
 > ```
