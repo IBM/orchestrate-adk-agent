@@ -166,6 +166,160 @@ To see all imported toolkits:
 orchestrate toolkits list
 ```
 
+## MCP Server Integration (Atlassian Jira)
+
+The Atlassian MCP server provides comprehensive Jira integration for issue tracking, project management, and agile workflows.
+
+### Prerequisites
+
+- [uv](https://astral.sh/uv) installed (for `uvx` command)
+- Jira Personal Access Token
+
+### MCP Server Files
+
+- `toolkits/atlassian_mcp.yaml`: MCP toolkit configuration file
+- `import_atlassian_mcp.sh`: Import Atlassian MCP toolkit via CLI command
+- `import_atlassian_mcp_from_file.sh`: Import Atlassian MCP toolkit from YAML file
+- `remove_atlassian_mcp.sh`: Remove Atlassian MCP toolkit
+
+### Quick Setup
+
+1. **Import the Atlassian MCP toolkit**:
+
+```bash
+./import_atlassian_mcp.sh
+```
+
+You will be prompted to enter:
+- Your Jira username (email)
+- Your Jira Personal Access Token
+
+The Jira URL (`https://jsw.ibm.com`) is pre-configured in the script.
+
+2. **Alternative: Import from YAML file**:
+
+```bash
+./import_atlassian_mcp_from_file.sh
+```
+
+### Available Atlassian Jira Tools
+
+Once imported, the following tools are available:
+
+#### Issue Management
+| Tool | Description |
+|------|-------------|
+| `atlassian_mcp_server:jira_get_issue` | Get details of a specific Jira issue |
+| `atlassian_mcp_server:jira_search` | Search Jira issues using JQL |
+| `atlassian_mcp_server:jira_create_issue` | Create a new Jira issue |
+| `atlassian_mcp_server:jira_update_issue` | Update an existing Jira issue |
+| `atlassian_mcp_server:jira_delete_issue` | Delete a Jira issue |
+| `atlassian_mcp_server:jira_batch_create_issues` | Create multiple issues in batch |
+
+#### Status & Transitions
+| Tool | Description |
+|------|-------------|
+| `atlassian_mcp_server:jira_transition_issue` | Transition issue to a new status |
+| `atlassian_mcp_server:jira_get_transitions` | Get available status transitions |
+
+#### Comments & Worklogs
+| Tool | Description |
+|------|-------------|
+| `atlassian_mcp_server:jira_add_comment` | Add a comment to an issue |
+| `atlassian_mcp_server:jira_add_worklog` | Add a worklog entry |
+| `atlassian_mcp_server:jira_get_worklog` | Get worklog entries for an issue |
+
+#### Projects & Versions
+| Tool | Description |
+|------|-------------|
+| `atlassian_mcp_server:jira_get_all_projects` | Get all accessible Jira projects |
+| `atlassian_mcp_server:jira_get_project_issues` | Get all issues for a project |
+| `atlassian_mcp_server:jira_get_project_versions` | Get all fix versions for a project |
+| `atlassian_mcp_server:jira_create_version` | Create a new fix version |
+| `atlassian_mcp_server:jira_batch_create_versions` | Batch create multiple versions |
+
+#### Agile & Sprints
+| Tool | Description |
+|------|-------------|
+| `atlassian_mcp_server:jira_get_agile_boards` | Get agile boards by name, project, or type |
+| `atlassian_mcp_server:jira_get_board_issues` | Get issues linked to a board |
+| `atlassian_mcp_server:jira_get_sprints_from_board` | Get sprints from a board |
+| `atlassian_mcp_server:jira_get_sprint_issues` | Get issues from a sprint |
+| `atlassian_mcp_server:jira_create_sprint` | Create a new sprint |
+| `atlassian_mcp_server:jira_update_sprint` | Update a sprint |
+
+#### Issue Linking
+| Tool | Description |
+|------|-------------|
+| `atlassian_mcp_server:jira_create_issue_link` | Create a link between two issues |
+| `atlassian_mcp_server:jira_remove_issue_link` | Remove a link between issues |
+| `atlassian_mcp_server:jira_create_remote_issue_link` | Create a remote/web link |
+| `atlassian_mcp_server:jira_get_link_types` | Get available link types |
+| `atlassian_mcp_server:jira_link_to_epic` | Link an issue to an epic |
+
+#### Utilities
+| Tool | Description |
+|------|-------------|
+| `atlassian_mcp_server:jira_get_user_profile` | Get user profile information |
+| `atlassian_mcp_server:jira_download_attachments` | Download attachments from an issue |
+| `atlassian_mcp_server:jira_search_fields` | Search Jira fields by keyword |
+| `atlassian_mcp_server:jira_batch_get_changelogs` | Get changelogs for multiple issues |
+
+### Using with the Salesforce Agent
+
+The Salesforce agent is configured to use Atlassian Jira tools for:
+
+- Querying and searching Jira issues
+- Creating, updating, and deleting tickets
+- Managing sprints and agile boards
+- Tracking project progress
+- Linking CRM data (Salesforce) with issue tracking (Jira)
+- Adding comments and worklogs
+- Managing project versions
+
+### Example Usage
+
+```
+"Get details of Jira issue PROJ-123"
+"Search for all open bugs in project MYPROJ"
+"Create a new bug in project MYPROJ with title 'Login issue'"
+"Add a comment to issue PROJ-456"
+"Show me all sprints for board 123"
+"Transition issue PROJ-789 to 'In Progress'"
+"Get all projects I have access to"
+"Link issue PROJ-100 to epic PROJ-50"
+```
+
+### Manual Atlassian MCP Toolkit Import
+
+You can also import the Atlassian MCP toolkit manually using the CLI:
+
+```bash
+# Setup connection first
+orchestrate connections add -a atlassian_creds
+orchestrate connections configure -a atlassian_creds --env draft --type team --kind key_value
+orchestrate connections set-credentials -a atlassian_creds --env draft \
+    -e "JIRA_USERNAME=your_email@example.com" \
+    -e "JIRA_PERSONAL_TOKEN=your_token"
+
+# Import the toolkit
+orchestrate toolkits add \
+    --kind mcp \
+    --name atlassian_mcp_server \
+    --description "Atlassian MCP Server for Jira integration" \
+    --command '["uvx", "mcp-atlassian", "--jira-url=https://jsw.ibm.com", "--jira-username=${JIRA_USERNAME}", "--jira-personal-token=${JIRA_PERSONAL_TOKEN}"]' \
+    --tools "*" \
+    --app-id atlassian_creds
+```
+
+### Remove Atlassian MCP Toolkit
+
+To remove the Atlassian MCP toolkit:
+
+```bash
+./remove_atlassian_mcp.sh
+```
+
 ## Features
 
 ### Core Capabilities

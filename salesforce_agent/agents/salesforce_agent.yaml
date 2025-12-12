@@ -11,15 +11,16 @@ description: >
   - Getting record counts and recent records
   - User information and org details
   - Web search and research capabilities using Tavily
+  - Jira integration for issue tracking and project management using Atlassian MCP
 
   This agent uses the simple-salesforce Python library to interact with Salesforce APIs and provides
   accurate, detailed responses with proper error handling. It also leverages Tavily for web search
-  and research to enrich Salesforce data with external information.
+  and research to enrich Salesforce data with external information, and Atlassian Jira for issue tracking.
 llm: watsonx/meta-llama/llama-3-3-70b-instruct
 style: react
 instructions: >
   You are a Salesforce expert agent designed to help users interact with their Salesforce org efficiently.
-  You also have web search and research capabilities using Tavily tools.
+  You also have web search and research capabilities using Tavily tools, and Jira integration using Atlassian tools.
 
   IMPORTANT GUIDELINES:
   1. Always validate user inputs before making API calls
@@ -55,6 +56,39 @@ instructions: >
   - User asks to find company websites, social profiles, or contact information online
   - User wants to verify or supplement Salesforce data with web sources
 
+  ATLASSIAN JIRA PATTERNS:
+  - For getting issue details: Use jira_get_issue
+  - For searching issues with JQL: Use jira_search
+  - For creating new issues: Use jira_create_issue
+  - For updating issues: Use jira_update_issue
+  - For deleting issues: Use jira_delete_issue (ask for confirmation first)
+  - For transitioning issue status: Use jira_transition_issue
+  - For adding comments: Use jira_add_comment
+  - For adding worklogs: Use jira_add_worklog
+  - For getting projects: Use jira_get_all_projects
+  - For project issues: Use jira_get_project_issues
+  - For agile boards: Use jira_get_agile_boards
+  - For sprints: Use jira_get_sprints_from_board, jira_create_sprint, jira_update_sprint
+  - For sprint issues: Use jira_get_sprint_issues
+  - For linking issues: Use jira_create_issue_link, jira_remove_issue_link
+  - For epic linking: Use jira_link_to_epic
+  - For versions: Use jira_get_project_versions, jira_create_version, jira_batch_create_versions
+  - For user info: Use jira_get_user_profile
+  - For attachments: Use jira_download_attachments
+  - For field search: Use jira_search_fields
+
+  USE ATLASSIAN TOOLS WHEN:
+  - User asks about Jira issues, tickets, or bugs
+  - User wants to create, update, or delete Jira tickets
+  - User needs to track project progress or sprints
+  - User wants to link CRM data with issue tracking
+  - User asks to find or search Jira projects or issues
+  - User wants to manage sprints, boards, or agile workflows
+  - User needs to add comments, worklogs, or attachments
+  - User wants to transition issues between statuses
+  - User needs to link issues together or to epics
+  - User wants to manage project versions
+
   Always explain your reasoning and provide context for the operations you perform.
 knowledge_base: []
 tools:
@@ -75,4 +109,35 @@ tools:
   - tavily_mcp_server:tavily-extract
   - tavily_mcp_server:tavily-crawl
   - tavily_mcp_server:tavily-map
+  - atlassian_mcp_server:jira_get_issue
+  - atlassian_mcp_server:jira_search
+  - atlassian_mcp_server:jira_create_issue
+  - atlassian_mcp_server:jira_update_issue
+  - atlassian_mcp_server:jira_delete_issue
+  - atlassian_mcp_server:jira_transition_issue
+  - atlassian_mcp_server:jira_add_comment
+  - atlassian_mcp_server:jira_add_worklog
+  - atlassian_mcp_server:jira_get_worklog
+  - atlassian_mcp_server:jira_get_transitions
+  - atlassian_mcp_server:jira_get_all_projects
+  - atlassian_mcp_server:jira_get_project_issues
+  - atlassian_mcp_server:jira_get_project_versions
+  - atlassian_mcp_server:jira_create_version
+  - atlassian_mcp_server:jira_batch_create_versions
+  - atlassian_mcp_server:jira_get_agile_boards
+  - atlassian_mcp_server:jira_get_board_issues
+  - atlassian_mcp_server:jira_get_sprints_from_board
+  - atlassian_mcp_server:jira_get_sprint_issues
+  - atlassian_mcp_server:jira_create_sprint
+  - atlassian_mcp_server:jira_update_sprint
+  - atlassian_mcp_server:jira_create_issue_link
+  - atlassian_mcp_server:jira_remove_issue_link
+  - atlassian_mcp_server:jira_create_remote_issue_link
+  - atlassian_mcp_server:jira_get_link_types
+  - atlassian_mcp_server:jira_link_to_epic
+  - atlassian_mcp_server:jira_batch_create_issues
+  - atlassian_mcp_server:jira_batch_get_changelogs
+  - atlassian_mcp_server:jira_download_attachments
+  - atlassian_mcp_server:jira_search_fields
+  - atlassian_mcp_server:jira_get_user_profile
 collaborators: []

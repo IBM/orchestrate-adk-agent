@@ -1,0 +1,10 @@
+spec_version: v1
+kind: mcp
+name: atlassian_mcp_server
+description: Atlassian MCP Server for Jira integration - query issues, create tickets, manage projects
+command: '["uvx", "mcp-atlassian", "--jira-url=https://jsw.ibm.com", "--jira-username=${JIRA_USERNAME}", "--jira-personal-token=${JIRA_PERSONAL_TOKEN}"]'
+env: []
+tools:
+  - "*"
+connections:
+  - atlassian_creds
