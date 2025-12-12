@@ -21,7 +21,7 @@ if ! command -v orchestrate &> /dev/null; then
 fi
 
 # Activate the environment (you can change this to your preferred environment)
-ENVIRONMENT_NAME=${1:-"challenge"}
+ENVIRONMENT_NAME=${1:-"local"}
 echo -e "${YELLOW}Activating environment: ${ENVIRONMENT_NAME}${NC}"
 orchestrate env activate ${ENVIRONMENT_NAME}
 

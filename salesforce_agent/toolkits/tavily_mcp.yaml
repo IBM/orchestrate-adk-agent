@@ -1,0 +1,10 @@
+spec_version: v1
+kind: mcp
+name: tavily_mcp_server
+description: Tavily MCP Server for AI-powered web search and research capabilities
+command: '["npx", "-y", "tavily-mcp@latest"]'
+env: []
+tools:
+  - "*"
+connections:
+  - tavily_creds

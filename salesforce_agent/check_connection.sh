@@ -29,7 +29,7 @@ if orchestrate connections list | grep -q "salesforce_creds"; then
     echo "Testing connection access..."
     python3 -c "
 try:
-    from ibm_watsonx_orchestrate.ext.connections import connections
+    from ibm_watsonx_orchestrate.run import connections
     conn = connections.key_value('salesforce_creds')
     username = conn.get('SF_USERNAME')
     if username:

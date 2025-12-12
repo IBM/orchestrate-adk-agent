@@ -62,6 +62,110 @@ cp .env.template .env
 
 Each script prints helpful messages and checks for required environment variables. If you encounter errors, ensure your `.env` file is configured and the scripts have execute permissions.
 
+## MCP Server Integration (Tavily)
+
+This project includes integration with MCP (Model Context Protocol) servers to extend the agent's capabilities. The Tavily MCP server provides AI-powered web search and research capabilities.
+
+> **Documentation**: For more information on MCP toolkits, see the [IBM WatsonX Orchestrate Toolkits Documentation](https://developer.watson-orchestrate.ibm.com/tools/toolkits/overview)
+
+### Prerequisites
+
+- Node.js installed (for `npx` command)
+- Tavily API key (included in the setup script or provide your own)
+
+### MCP Server Files
+
+- `toolkits/tavily_mcp.yaml`: MCP toolkit configuration file
+- `import_mcp_toolkit.sh`: Import MCP toolkit via CLI command
+- `import_mcp_from_file.sh`: Import MCP toolkit from YAML file
+- `remove_mcp_toolkit.sh`: Remove MCP toolkit
+
+### Quick Setup
+
+1. **Import the MCP toolkit**:
+
+```bash
+./import_mcp_toolkit.sh
+```
+
+This script will:
+
+- Create a `tavily_creds` connection for the API key
+- Configure the connection for draft environment
+- Import the Tavily MCP toolkit with all available tools
+
+2. **Alternative: Import from YAML file**:
+
+```bash
+./import_mcp_from_file.sh
+```
+
+### Available Tavily Tools
+
+Once imported, the following tools are available:
+
+| Tool                               | Description                                          |
+| ---------------------------------- | ---------------------------------------------------- |
+| `tavily_mcp_server:tavily-search`  | AI-powered web search for finding information online |
+| `tavily_mcp_server:tavily-extract` | Extract content from specific URLs                   |
+| `tavily_mcp_server:tavily-crawl`   | Crawl websites to gather comprehensive information   |
+| `tavily_mcp_server:tavily-map`     | Map website structure and discover pages             |
+
+### Using with the Salesforce Agent
+
+The Salesforce agent is configured to use Tavily tools for:
+
+- Researching companies, competitors, or industry trends
+- Enriching Salesforce lead/contact data with external information
+- Finding current news about accounts or prospects
+- Discovering company websites, social profiles, or contact information
+- Verifying or supplementing Salesforce data with web sources
+
+### Example Usage
+
+```
+"Research the company Acme Corp and find their latest news"
+"Find the LinkedIn profile for John Doe at IBM"
+"What are the latest industry trends in cloud computing?"
+"Extract contact information from https://example.com/about"
+```
+
+### Manual MCP Toolkit Import
+
+You can also import an MCP toolkit manually using the CLI:
+
+```bash
+# Setup connection first
+orchestrate connections add -a tavily_creds
+orchestrate connections configure -a tavily_creds --env draft --type team --kind key_value
+orchestrate connections set-credentials -a tavily_creds --env draft -e "TAVILY_API_KEY=your_api_key"
+
+# Import the toolkit
+orchestrate toolkits add \
+    --kind mcp \
+    --name tavily_mcp_server \
+    --description "Tavily MCP Server for AI-powered web search" \
+    --command '["npx", "-y", "tavily-mcp@latest"]' \
+    --tools "*" \
+    --app-id tavily_creds
+```
+
+### Remove MCP Toolkit
+
+To remove the Tavily MCP toolkit:
+
+```bash
+./remove_mcp_toolkit.sh
+```
+
+### Listing Toolkits
+
+To see all imported toolkits:
+
+```bash
+orchestrate toolkits list
+```
+
 ## Features
 
 ### Core Capabilities
