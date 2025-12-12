@@ -40,7 +40,7 @@ orchestrate connections add -a tavily_creds || echo -e "${YELLOW}Connection 'tav
 
 # Configure for draft environment only (local development only supports draft)
 orchestrate connections configure -a tavily_creds --env draft --type team --kind key_value || true
-orchestrate connections set-credentials -a tavily_creds --env draft -e "TAVILY_API_KEY=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"
+orchestrate connections set-credentials -a tavily_creds --env draft -e <your-api-key-here>
 
 # Import the MCP toolkit using CLI command
 echo -e "${YELLOW}Importing Tavily MCP toolkit...${NC}"
